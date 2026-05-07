@@ -13,7 +13,7 @@ All attacks are **black-box** against the victim VLM — optimized on CLIP surro
 - **12 Attack Methods**: Gradient-based (single/ensemble surrogate), attention-guided, diffusion-based, multimodal injection, and non-gradient attacks
 - **3 Defenses**: Patch detection, frequency-domain filtering, and multi-modal purification
 - **Modular Architecture**: Plugin-based registries — add a new attack by implementing `BaseAttack` and registering it
-- **Dual Metrics**: ASR (Attack Success Rate) and MR (Misclassification Rate) with per-category breakdown
+- **Evaluation**: ASR (Attack Success Rate) with per-category breakdown
 
 ## Quick Start
 
@@ -53,10 +53,6 @@ python scripts/generate_adversarial.py promptinject \
     --vlm_url http://localhost:8001 --vlm_model Qwen/Qwen3-VL-8B-Instruct \
     -o dataset/nips2017/adversarial/promptinject
 
-# Natural corruption baseline
-python scripts/generate_adversarial.py corruption \
-    --dataset nips2017 --corruption_mode fog --corruption_severity 3 \
-    -o dataset/nips2017/adversarial/corruption_fog
 ```
 
 ### Evaluate
@@ -84,7 +80,7 @@ python agent/adversarial/evaluate.py \
 bash scripts/run_eval_all.sh
 ```
 
-Outputs per-attack **ASR** (response matches attack target) and **MR** (response differs from correct answer).
+Outputs per-attack **ASR** (response matches attack target).
 
 ### Apply Defenses
 
